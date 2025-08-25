@@ -2,7 +2,9 @@
 
 - Create React App
 - Configure TailwindCSS
-
+- Header
+- Login Form
+- Sign Up Form
 
 # Feture
 - Login/SignUp 
