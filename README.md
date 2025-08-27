@@ -30,6 +30,7 @@
 - Update Store with Trailer Video Data
 - Embedded the Yotube video and make it autoplay and mute
 - Tailwind Classes to make Main Container look awesome
+- Build SecondaryContainer
 
 
 
@@ -38,7 +39,9 @@
     - VideoBackground
     - VideoTitle
 - SecondaryContainer
-    - MovieList * n
+    - MovieList * n (popular, trending, nowPlaingMovies, Horror)
+        - MovieList - popular
+            - MovieCard
     - cards * n    
 
 
