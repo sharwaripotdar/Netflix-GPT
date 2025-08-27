@@ -1,16 +1,16 @@
 import Header from "./Header";
 import { useState, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { checkValidData } from "../utils/validate";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { BG_URL, USER_AVATAR } from "../utils/constant";
 
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const name = useRef(null);
@@ -31,18 +31,18 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL: "https://avatars.githubusercontent.com/u/102588884?v=4",
+            photoURL: USER_AVATAR,
           })
             .then(() => {
               // Profile updated!
               const { uid, email, displayName, photoURL } = auth.currentUser;
               dispatch(addUser({ uid: uid, email: email, displayName: displayName, photoURL: photoURL }));
-              navigate("/browse");
+            
             })
             .catch((error) => {
               setErrorMessage(error);
             });
-          navigate("/browse");
+
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -57,9 +57,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          // ...
-        //   console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -79,8 +76,8 @@ const Login = () => {
       <div className="absolute">
         <img
           className=""
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/3e4bd046-85a3-40e1-842d-fa11cec84349/web/IN-en-20250818-TRIFECTA-perspective_4bd1b66d-bbb6-4bc6-ba8f-ecbba53a1278_small.jpg"
-          alt="logo"
+          src={BG_URL}
+          alt="bg-logo"
         />
       </div>
       <form
