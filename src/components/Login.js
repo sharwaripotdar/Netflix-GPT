@@ -77,7 +77,7 @@ const Login = () => {
         <img
           className=""
           src={BG_URL}
-          alt="bg-logo"
+          alt="backgroung_img"
         />
       </div>
       <form
